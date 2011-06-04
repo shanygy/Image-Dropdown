@@ -34,7 +34,7 @@
 		};
 	};
 	
-	$.fn.imageDropDown = function(){
+	$.fn.imageDropDown = function(method){
 		var methods = {
 			init: function(options) {
 				return this.each(function(){
@@ -45,10 +45,20 @@
 							var $option = $(option);
 							itemsCol.set($option.attr("value"), {"image": $option.attr("title"), "text": $option.val()});
 						});
-						$dropdown.data("imageDropDown", itemsCol);
+						$dropdown.data("imageDropDown", itemsCol);						
 					}
 				});
 			}
 		};
+		
+		if (methods[method]) {
+			return methods[method].apply(this, Array.prototype.slice.call(arguments, 1));
+		}
+		else if (typeof method === 'object' || !method) {
+			return methods.init.apply(this, arguments);
+		}
+		else {
+			$.error('Method ' + method + ' does not exist in jQuery.imageDropDown');
+		}
 	};
 })(jQuery);
