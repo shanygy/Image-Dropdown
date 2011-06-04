@@ -46,11 +46,21 @@
 							itemsCol.set($option.attr("value"), {"image": $option.attr("title"), "text": $option.val()});
 						});
 						$dropdown.data("imageDropDown", itemsCol);						
+						
+						_switchMarkup($dropdown.data("imageDropDown").items);
 					}
 				});
 			}
 		};
 		
+		function _switchMarkup(items){
+			var list = $("<ul></ul>");
+			for (key in items) {
+				list.append("<li>" + items[key].text + "</li>");
+			}
+			$("body").append(list);
+		}
+
 		if (methods[method]) {
 			return methods[method].apply(this, Array.prototype.slice.call(arguments, 1));
 		}

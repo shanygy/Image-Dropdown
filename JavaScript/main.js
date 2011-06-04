@@ -1,0 +1,3 @@
+(function(){
+	$(".idd").imageDropDown();
+})();
