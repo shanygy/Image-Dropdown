@@ -31,6 +31,6 @@
 			remove: remove,
 			clear: clear,
 			items: getItems
-		}    
+		};
 	}());
-}(jQuery)();
+})(jQuery);
