@@ -1,28 +1,28 @@
 (function($) {
-	$.collection = (function() {
-		var items = {};
+	$.collection = function(colItems) {
+		this.items = colItems || {};
 		
 		var set = function(key, value) {
-			items[key] = value;
+			this.items[key] = value;
 			return value;
 		};
 		
 		var get = function(key) {
-			return items[key];
+			return this.items[key];
 		};
 		
 		var remove = function(key) {
-			return delete items[key];
+			return delete this.items[key];
 		};
 		
 		var clear = function() {
-			for (key in items) {
-				delete items[key];
+			for (key in this.items) {
+				delete this.items[key];
 			}
 		};
 		
 		var getItems = function(){
-			return items;
+			return this.items;
 		};
 		
 		return {
@@ -32,5 +32,23 @@
 			clear: clear,
 			items: getItems
 		};
-	}());
+	};
+	
+	$.fn.imageDropDown = function(){
+		var methods = {
+			init: function(options) {
+				return this.each(function(){
+					var $dropdown = $(this);
+					if (!$dropdown.data("imageDropDown")) {
+						var itemsCol = new $.collection();
+							$dropdown.children().each(function(i, option){
+							var $option = $(option);
+							itemsCol.set($option.attr("value"), {"image": $option.attr("title"), "text": $option.val()});
+						});
+						$dropdown.data("imageDropDown", itemsCol);
+					}
+				});
+			}
+		};
+	};
 })(jQuery);
