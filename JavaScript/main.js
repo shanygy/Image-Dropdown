@@ -1,3 +1,3 @@
 (function(){
-	$(".idd").imageDropDown();
+	$("#idd1").imageDropDown();
 })();
