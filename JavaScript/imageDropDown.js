@@ -1,5 +1,5 @@
 (function($) {
-	$.imageDropDown = (function() {
+	$.collection = (function() {
 		var items = {};
 		
 		var set = function(key, value) {
