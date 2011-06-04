@@ -1,20 +1,32 @@
-.imageDropDown {
-	padding: 0;
-	margin: 0;
+.idd-list-wrapper {
+	padding-right: 17px;
+	position: relative;
 	display: inline-block;
 	*display: inline;
-	list-style: none;
 	zoom: 1;
 }
-	.imageDropDown .idd-item {
-		border: 1px solid #cecece;
-		padding: 0 2px;
-		background-color: #eee;
-		zoom: 1;
-	}	
-	.imageDropDown img.idd-icon {
-		height: 20px;
-		padding: 2px 5px 2px 0px;
-		width: 20px;
-		vertical-align: middle;
+	.idd-btn {
+		position: absolute;
+		right: 0;
+		top: 0;
 	}
+	.idd-list {
+		padding: 0;
+		margin: 0;
+		position: absolute;
+		left: 0;
+		top: 26px;
+		list-style: none;
+	}
+		.idd-list .idd-item , .idd-list-wrapper .idd-selectedItem{
+			border: 1px solid #cecece;
+			padding: 0 2px;
+			background-color: #eee;
+			zoom: 1;
+		}	
+		.idd-icon {
+			height: 20px;
+			padding: 2px 5px 2px 0px;
+			width: 20px;
+			vertical-align: middle;
+		}

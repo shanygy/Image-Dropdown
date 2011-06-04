@@ -2,35 +2,23 @@
 	$.collection = function(colItems) {
 		this.items = colItems || {};
 		
-		var set = function(key, value) {
+		this.set = function(key, value) {
 			this.items[key] = value;
 			return value;
 		};
 		
-		var get = function(key) {
+		this.get = function(key) {
 			return this.items[key];
 		};
 		
-		var remove = function(key) {
+		this.remove = function(key) {
 			return delete this.items[key];
 		};
 		
-		var clear = function() {
+		this.clear = function() {
 			for (key in this.items) {
 				delete this.items[key];
 			}
-		};
-		
-		var getItems = function(){
-			return this.items;
-		};
-		
-		return {
-			set: set,
-			get: get,
-			remove: remove,
-			clear: clear,
-			items: getItems
 		};
 	};
 	
@@ -47,19 +35,32 @@
 						});
 						$dropdown.data('imageDropDown', itemsCol);						
 						
-						_switchMarkup($dropdown.data('imageDropDown').items);
+						_addMarkup($dropdown.data('imageDropDown').items);
 					}
 				});
 			}
 		};
 		
 		/********* Helper functions *********/
-		function _switchMarkup(items){
-			var list = $('<ul class="imageDropDown"></ul>');
+		function _addMarkup(items){
+			var $listWrapper = $('<div class="idd-list-wrapper"><img class="idd-btn" src="/JavaScript/Plugins/imageDropDown/images/iid-arrow.gif" /></div>'),
+				$list = $('<ul class="idd-list"></ul>'),
+				firstItem = null;
+
 			for (key in items) {
-				list.append('<li class="idd-item"><img class="idd-icon" src= ' + items[key].image + '/><span class="idd-text">' + items[key].text + '</span></li>');
+				if (!firstItem)	{
+					firstItem = {"key": key, "value": items[key]};
+				}
+				$list.append('<li class="idd-item"><img class="idd-icon" src= "' + items[key].image + '" /><span class="idd-text">' + items[key].text + '</span></li>');
 			}
-			$('body').append(list);
+			$listWrapper
+			.append('<div class="idd-selectedItem" data-value="' + firstItem['key'] + '"><img class="idd-icon" src="' + firstItem['value'].image + '" /><span>' + firstItem['value'].text + '</span></div>')
+			.append($list)
+			.appendTo('body');
+
+			$('.idd-btn').bind('click.imageDropDown', function(){
+					$list.slideToggle('medium');
+			});
 		}
 		/************************************/
 
