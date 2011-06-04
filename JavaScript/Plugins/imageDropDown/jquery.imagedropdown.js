@@ -39,27 +39,29 @@
 			init: function(options) {
 				return this.each(function(){
 					var $dropdown = $(this);
-					if (!$dropdown.data("imageDropDown")) {
+					if (!$dropdown.data('imageDropDown')) {
 						var itemsCol = new $.collection();
 							$dropdown.children().each(function(i, option){
 							var $option = $(option);
-							itemsCol.set($option.attr("value"), {"image": $option.attr("title"), "text": $option.val()});
+							itemsCol.set($option.attr('value'), {'image': $option.attr('title'), 'text': $option.val()});
 						});
-						$dropdown.data("imageDropDown", itemsCol);						
+						$dropdown.data('imageDropDown', itemsCol);						
 						
-						_switchMarkup($dropdown.data("imageDropDown").items);
+						_switchMarkup($dropdown.data('imageDropDown').items);
 					}
 				});
 			}
 		};
 		
+		/********* Helper functions *********/
 		function _switchMarkup(items){
-			var list = $("<ul></ul>");
+			var list = $('<ul class="imageDropDown"></ul>');
 			for (key in items) {
-				list.append("<li>" + items[key].text + "</li>");
+				list.append('<li class="idd-item"><img class="idd-icon" src= ' + items[key].image + '/><span class="idd-text">' + items[key].text + '</span></li>');
 			}
-			$("body").append(list);
+			$('body').append(list);
 		}
+		/************************************/
 
 		if (methods[method]) {
 			return methods[method].apply(this, Array.prototype.slice.call(arguments, 1));
