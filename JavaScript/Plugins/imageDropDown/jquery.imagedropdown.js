@@ -43,7 +43,7 @@
 		
 		/********* Helper functions *********/
 		function _addMarkup(items){
-			var $listWrapper = $('<div class="idd-list-wrapper"><img class="idd-btn" src="/JavaScript/Plugins/imageDropDown/images/iid-arrow.gif" /></div>'),
+			var $listWrapper = $('<div class="idd-list-wrapper"><img class="idd-btn" src="JavaScript/Plugins/imageDropDown/images/iid-arrow.gif" /></div>'),
 				$list = $('<ul class="idd-list"></ul>'),
 				firstItem = null;
 
